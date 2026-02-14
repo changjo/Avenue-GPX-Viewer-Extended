@@ -368,7 +368,8 @@ class ViewController: NSViewController, MKMapViewDelegate {
         if let gpx = self.mapView.document?.gpx {
             for route in gpx.routes {
                 for point in route.points {
-                    let location = CLLocation(latitude: point.coordinate.latitude, longitude: point.coordinate.longitude)
+                    guard let coordinate = GPXWaypointAdapter.coordinate(from: point) else { continue }
+                    let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
                     if location.distance(from: cursorLocation) <= radius {
                         breakAll = true
                         waypoint = point
@@ -380,7 +381,8 @@ class ViewController: NSViewController, MKMapViewDelegate {
             for track in gpx.tracks {
                 for segment in track.segments {
                     for point in segment.points {
-                        let location = CLLocation(latitude: point.coordinate.latitude, longitude: point.coordinate.longitude)
+                        guard let coordinate = GPXWaypointAdapter.coordinate(from: point) else { continue }
+                        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
                         if location.distance(from: cursorLocation) <= radius {
                             breakAll = true
                             waypoint = point
@@ -783,8 +785,8 @@ class MiniDelegate: NSObject, MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is GPXWaypoint else {
-            print("Non-GPXWaypoint annotation for minimap found")
+        guard annotation is GPXWaypointAnnotation else {
+            print("Non-GPXWaypointAnnotation annotation for minimap found")
             return nil
         }
         

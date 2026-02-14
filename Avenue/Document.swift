@@ -47,11 +47,12 @@ class Document: NSDocument {
         
         let viewController = windowController.contentViewController as! ViewController
         //viewController.mapView.loadedGPXFile(gpx)
-        viewController.mapView.loadedGPXData(data, windowController)
+        viewController.mapView.loadedGPXData(data, fileURL: fileURL, windowController)
         viewController.filePath = fileURL?.absoluteString ?? ""
         Swift.print(viewController.filePath)
             
-        windowController.fileImageView.image = NSWorkspace.shared.icon(forFileType: "public.gpx").resize(withSize: NSSize(width: 22, height: 22))
+        let fileType = fileURL?.pathExtension.isEmpty == false ? (fileURL?.pathExtension ?? "") : "public.data"
+        windowController.fileImageView.image = NSWorkspace.shared.icon(forFileType: fileType).resize(withSize: NSSize(width: 22, height: 22))
         windowController.fileImageView.fileURL = fileURL
         
         appDelegate.enableViewMenuItem()
@@ -158,4 +159,3 @@ class Document: NSDocument {
         return false
     }
 }
-

@@ -138,7 +138,7 @@
 		12FF818324AF7D02001A2DB3 /* GPXTileServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPXTileServer.swift; sourceTree = "<group>"; };
 		BF1E4A0F2972D1C300B0C294 /* AvenuePolylineRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvenuePolylineRenderer.swift; sourceTree = "<group>"; };
 		BF4D8B4D2E75A11C0005B6E4 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
-		BF4F5AAB22D1FBCD00C8E95A /* Avenue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Avenue.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF4F5AAB22D1FBCD00C8E95A /* Avenue Extended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Avenue Extended.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4F5AAE22D1FBCD00C8E95A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF4F5AB022D1FBCD00C8E95A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BF4F5AB222D1FBCD00C8E95A /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 		BF4F5AAC22D1FBCD00C8E95A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF4F5AAB22D1FBCD00C8E95A /* Avenue.app */,
+				BF4F5AAB22D1FBCD00C8E95A /* Avenue Extended.app */,
 				BF4F5ABF22D1FBCF00C8E95A /* AvenueTests.xctest */,
 				12359FDF2587C27300365811 /* GPXQuickLook.appex */,
 				BF63F37E2971B5DC00255014 /* Avenue Thumbnails.appex */,
@@ -362,8 +362,8 @@
 				12C445052478F67D00BE9465 /* CoreGPX */,
 				BF626D7624CC6CBB007E2EEF /* MapCache */,
 			);
-			productName = Avenue;
-			productReference = BF4F5AAB22D1FBCD00C8E95A /* Avenue.app */;
+			productName = "Avenue Extended";
+			productReference = BF4F5AAB22D1FBCD00C8E95A /* Avenue Extended.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BF4F5ABE22D1FBCF00C8E95A /* AvenueTests */ = {
@@ -612,7 +612,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 152;
-				DEVELOPMENT_TEAM = 3X69W4AQD6;
+				DEVELOPMENT_TEAM = WWF99NGYL5;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
@@ -635,7 +635,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 1.6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vincent-neo.Avenue.GPXQuickLook";
+				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended.GPXQuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = YES;
@@ -658,7 +658,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 152;
-				DEVELOPMENT_TEAM = 3X69W4AQD6;
+				DEVELOPMENT_TEAM = WWF99NGYL5;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
@@ -681,7 +681,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 1.6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vincent-neo.Avenue.GPXQuickLook";
+				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended.GPXQuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = YES;
 				RUNTIME_EXCEPTION_ALLOW_JIT = YES;
@@ -822,7 +822,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 152;
-				DEVELOPMENT_TEAM = 3X69W4AQD6;
+				DEVELOPMENT_TEAM = WWF99NGYL5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Avenue/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
@@ -832,8 +832,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 1.6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vincent-neo.Avenue";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended;
+				PRODUCT_NAME = "Avenue Extended";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
@@ -849,7 +849,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 152;
-				DEVELOPMENT_TEAM = 3X69W4AQD6;
+				DEVELOPMENT_TEAM = WWF99NGYL5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Avenue/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
@@ -859,8 +859,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = 1.6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vincent-neo.Avenue";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended;
+				PRODUCT_NAME = "Avenue Extended";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
@@ -883,7 +883,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = neo.vincent.AvenueTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Avenue.app/Contents/MacOS/Avenue";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Avenue Extended.app/Contents/MacOS/Avenue Extended";
 			};
 			name = Debug;
 		};
@@ -904,7 +904,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = neo.vincent.AvenueTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Avenue.app/Contents/MacOS/Avenue";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Avenue Extended.app/Contents/MacOS/Avenue Extended";
 			};
 			name = Release;
 		};
@@ -917,7 +917,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 152;
-				DEVELOPMENT_TEAM = 3X69W4AQD6;
+				DEVELOPMENT_TEAM = WWF99NGYL5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Avenue Thumbnails/Info.plist";
@@ -930,7 +930,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vincent-neo.Avenue.AvenueThumbnails";
+				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended.AvenueThumbnails;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -947,7 +947,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 152;
-				DEVELOPMENT_TEAM = 3X69W4AQD6;
+				DEVELOPMENT_TEAM = WWF99NGYL5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Avenue Thumbnails/Info.plist";
@@ -960,7 +960,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vincent-neo.Avenue.AvenueThumbnails";
+				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended.AvenueThumbnails;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

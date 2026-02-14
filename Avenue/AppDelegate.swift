@@ -48,6 +48,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
+
+    func application(_ sender: NSApplication, openFiles filenames: [String]) {
+        var openedAny = false
+        for filename in filenames {
+            let url = URL(fileURLWithPath: filename)
+            let ext = url.pathExtension.lowercased()
+            guard ext == "gpx" || ext == "rgp" else { continue }
+            openedAny = openGPXCompatibleDocument(at: url) || openedAny
+        }
+        sender.reply(toOpenOrPrint: openedAny ? .success : .failure)
+    }
     
 
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
@@ -95,9 +106,48 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func fileAnIssue(_ sender: Any) {
         NSWorkspace.shared.open(URL(string: "https://github.com/vincentneo/Avenue-GPX-Viewer/issues")!)
     }
+
+    @IBAction func openSupportedDocument(_ sender: Any?) {
+        let panel = NSOpenPanel()
+        panel.canChooseDirectories = false
+        panel.canChooseFiles = true
+        panel.allowsMultipleSelection = false
+        panel.allowedFileTypes = ["gpx", "rgp"]
+        panel.allowsOtherFileTypes = false
+
+        panel.begin { response in
+            guard response == .OK, let url = panel.url else { return }
+            _ = self.openGPXCompatibleDocument(at: url)
+        }
+    }
+
+    @discardableResult
+    private func openGPXCompatibleDocument(at url: URL) -> Bool {
+        do {
+            let controller = NSDocumentController.shared
+            let document = Document()
+            let data = try Data(contentsOf: url)
+            try document.read(from: data, ofType: "GPX File")
+            document.fileURL = url
+            controller.addDocument(document)
+            document.makeWindowControllers()
+            document.showWindows()
+            controller.noteNewRecentDocumentURL(url)
+            return true
+        } catch {
+            NSApp.presentError(error)
+            return false
+        }
+    }
     
 }
 
 extension NSNotification.Name {
     static let miniMapAction = Notification.Name("MiniMapAction")
+}
+
+extension NSApplication {
+    @IBAction func openSupportedDocument(_ sender: Any?) {
+        (delegate as? AppDelegate)?.openSupportedDocument(sender)
+    }
 }

@@ -34,6 +34,7 @@
 				<string>com.berbie.documenttypes.gpx</string>
 				<string>com.topographix.gpx</string>
 				<string>public.gpx</string>
+				<string>com.changjo.rgp</string>
 				<string>public.xml</string>
 			</array>
 			<key>QLSupportsSearchableItems</key>
