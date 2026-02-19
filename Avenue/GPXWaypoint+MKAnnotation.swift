@@ -1,78 +1,53 @@
 //
-//  GPXPin.swift
-//  OpenGpxTracker
+//  GPXWaypoint+MKAnnotation.swift
+//  Avenue
 //
-//  Created by merlos on 16/09/14.
+//  Safe waypoint adapters used by map and quick look targets.
 //
 
 import MapKit
 import CoreGPX
 
-///
-/// Extends GPXWaypoint to support the MKAnnotation protocol. It allows to
-/// add the waypoint as a pin in the map
-///
-extension GPXWaypoint : MKAnnotation {
-    
-    ///
-    /// Inits the point with a coordinate
-    ///
-    convenience init (coordinate: CLLocationCoordinate2D) { 
-        self.init(latitude: coordinate.latitude, longitude: coordinate.longitude)
-        //set default title and subtitle
-        
-        // Default title now
-        let timeFormat = DateFormatter()
-        timeFormat.dateStyle = DateFormatter.Style.none
-        timeFormat.timeStyle = DateFormatter.Style.medium
-        //timeFormat.setLocalizedDateFormatFromTemplate("HH:mm:ss")
-        
-        let subtitleFormat = DateFormatter()
-        //dateFormat.setLocalizedDateFormatFromTemplate("MMM dd, yyyy")
-        subtitleFormat.dateStyle = DateFormatter.Style.medium
-        subtitleFormat.timeStyle = DateFormatter.Style.medium
-        
-        let now = Date()
-        self.time = now
-        self.title = timeFormat.string(from: now)
-        self.subtitle = subtitleFormat.string(from: now)
+enum GPXWaypointAdapter {
+    static func coordinate(from waypoint: GPXWaypoint) -> CLLocationCoordinate2D? {
+        guard let latitude = waypoint.latitude, let longitude = waypoint.longitude else {
+            return nil
+        }
+        return CLLocationCoordinate2D(latitude: latitude, longitude: CLLocationDegrees(longitude))
     }
-    
-    convenience init (coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance?) {
-        self.init(coordinate: coordinate)
-        self.elevation = altitude
+
+    static func coordinate(from point: GPXTrackPoint) -> CLLocationCoordinate2D? {
+        guard let latitude = point.latitude, let longitude = point.longitude else {
+            return nil
+        }
+        return CLLocationCoordinate2D(latitude: latitude, longitude: CLLocationDegrees(longitude))
     }
-    
-    /// Title displayed on the annotation bubble.
-    /// Is the attribute name of the waypoint.
-    public var title: String? {
-        set {
-            self.name = newValue
+
+    static func coordinate(from point: GPXRoutePoint) -> CLLocationCoordinate2D? {
+        guard let latitude = point.latitude, let longitude = point.longitude else {
+            return nil
         }
-        get {
-            return self.name
-        }
+        return CLLocationCoordinate2D(latitude: latitude, longitude: CLLocationDegrees(longitude))
     }
-    
-    /// Subtitle displayed on the annotation bubble
-    /// Description of the GPXWaypoint.
-    public var subtitle: String? {
-        set {
-            self.desc = newValue
-        }
-        get {
-            return self.desc
-        }
+}
+
+final class GPXWaypointAnnotation: NSObject, MKAnnotation {
+    let waypoint: GPXWaypoint
+    let coordinate: CLLocationCoordinate2D
+
+    var title: String? {
+        waypoint.name
     }
-    
-    ///Annotation coordinates. Returns/Sets the waypoint latitude and longitudes.
-    public var coordinate: CLLocationCoordinate2D {
-        set {
-            self.latitude = newValue.latitude
-            self.longitude = newValue.longitude
+
+    var subtitle: String? {
+        waypoint.desc
+    }
+
+    init?(waypoint: GPXWaypoint) {
+        guard let coordinate = GPXWaypointAdapter.coordinate(from: waypoint) else {
+            return nil
         }
-        get {
-            return CLLocationCoordinate2D(latitude: self.latitude!, longitude: CLLocationDegrees(self.longitude!))
-        }
-    }    
+        self.waypoint = waypoint
+        self.coordinate = coordinate
+    }
 }

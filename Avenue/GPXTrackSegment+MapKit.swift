@@ -29,7 +29,8 @@ extension GPXTrackSegment {
     func trackPointsToCoordinates() -> [CLLocationCoordinate2D] {
         var coords: [CLLocationCoordinate2D] = []
         for point in self.points {
-            coords.append(point.coordinate)
+            guard let coordinate = GPXWaypointAdapter.coordinate(from: point) else { continue }
+            coords.append(coordinate)
         }
         return coords
     }

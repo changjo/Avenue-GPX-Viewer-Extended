@@ -20,7 +20,8 @@ class QLMapView: MKMapView {
             let overlay = route.overlay
             self.addOverlay(overlay, level: .aboveLabels)
             for point in route.points {
-                self.extent.extendAreaToIncludeLocation(point.coordinate)
+                guard let coordinate = GPXWaypointAdapter.coordinate(from: point) else { continue }
+                self.extent.extendAreaToIncludeLocation(coordinate)
             }
             
             length += route.length()
@@ -31,8 +32,10 @@ class QLMapView: MKMapView {
         }
         
         for waypoint in root.waypoints {
-            self.extent.extendAreaToIncludeLocation(waypoint.coordinate)
-            self.addAnnotation(waypoint)
+            guard let coordinate = GPXWaypointAdapter.coordinate(from: waypoint) else { continue }
+            self.extent.extendAreaToIncludeLocation(coordinate)
+            guard let annotation = GPXWaypointAnnotation(waypoint: waypoint) else { continue }
+            self.addAnnotation(annotation)
         }
         
         for track in root.tracks {
@@ -43,7 +46,8 @@ class QLMapView: MKMapView {
                 self.addOverlay(overlay, level: .aboveLabels)
                 
                 for trkpt in segment.points {
-                    self.extent.extendAreaToIncludeLocation(trkpt.coordinate)
+                    guard let coordinate = GPXWaypointAdapter.coordinate(from: trkpt) else { continue }
+                    self.extent.extendAreaToIncludeLocation(coordinate)
                 }
                 
                 guard let startTime = segment.points.first?.time,

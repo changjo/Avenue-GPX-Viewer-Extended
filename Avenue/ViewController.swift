@@ -218,14 +218,21 @@ class ViewController: NSViewController, MKMapViewDelegate {
         //dropDownMenu.menu?.items.append()
 //        self.view.addSubview(dropDownMenu)
         
-        if #available(macOS 26, *) {
-            let glassView = NSGlassEffectView()
-            glassView.frame = NSRect(x: 0, y: 0, width: 145, height: 25)
-            glassView.contentView = dropDownMenu
+        if #available(macOS 26, *),
+           let glassViewClass = NSClassFromString("NSGlassEffectView") as? NSView.Type {
+            let glassView = glassViewClass.init(frame: NSRect(x: 0, y: 0, width: 145, height: 25))
+
+            if glassView.responds(to: Selector(("setContentView:"))) {
+                glassView.setValue(dropDownMenu, forKey: "contentView")
+            } else {
+                dropDownMenu.frame = glassView.bounds
+                dropDownMenu.autoresizingMask = [.width, .height]
+                glassView.addSubview(dropDownMenu)
+            }
+
             self.glassView = glassView
             self.view.addSubview(glassView)
-        }
-        else {
+        } else {
             dropDownMenu.wantsLayer = true
             dropDownMenu.layer?.opacity = 0.9
             self.view.addSubview(dropDownMenu)
@@ -368,7 +375,8 @@ class ViewController: NSViewController, MKMapViewDelegate {
         if let gpx = self.mapView.document?.gpx {
             for route in gpx.routes {
                 for point in route.points {
-                    let location = CLLocation(latitude: point.coordinate.latitude, longitude: point.coordinate.longitude)
+                    guard let coordinate = GPXWaypointAdapter.coordinate(from: point) else { continue }
+                    let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
                     if location.distance(from: cursorLocation) <= radius {
                         breakAll = true
                         waypoint = point
@@ -380,7 +388,8 @@ class ViewController: NSViewController, MKMapViewDelegate {
             for track in gpx.tracks {
                 for segment in track.segments {
                     for point in segment.points {
-                        let location = CLLocation(latitude: point.coordinate.latitude, longitude: point.coordinate.longitude)
+                        guard let coordinate = GPXWaypointAdapter.coordinate(from: point) else { continue }
+                        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
                         if location.distance(from: cursorLocation) <= radius {
                             breakAll = true
                             waypoint = point
@@ -783,8 +792,8 @@ class MiniDelegate: NSObject, MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is GPXWaypoint else {
-            print("Non-GPXWaypoint annotation for minimap found")
+        guard annotation is GPXWaypointAnnotation else {
+            print("Non-GPXWaypointAnnotation annotation for minimap found")
             return nil
         }
         

@@ -25,17 +25,17 @@ class MKSnapshotDrawer {
         let allTrackSegments = self.gpx.tracks.reduce(into: ([GPXTrackSegment]())) { partialResult, track in
             partialResult.append(contentsOf: track.segments)
         }
-        let allCoordinates = allTrackSegments.map({
-            $0.points.map({$0.coordinate})
-        })
+        let allCoordinates = allTrackSegments.map { segment in
+            segment.points.compactMap { GPXWaypointAdapter.coordinate(from: $0) }
+        }
         
         let trackPoints = allCoordinates.map({
             $0.map({ snapshot.point(for: $0) })
         })
         
-        let routeCoordinates = self.gpx.routes.map({
-            $0.points.map({$0.coordinate})
-        })
+        let routeCoordinates = self.gpx.routes.map { route in
+            route.points.compactMap { GPXWaypointAdapter.coordinate(from: $0) }
+        }
         
         let routePoints = routeCoordinates.map({
             $0.map({ snapshot.point(for: $0) })
@@ -67,7 +67,8 @@ class MKSnapshotDrawer {
         let size = pinImage.size
         
         for waypoint in gpx.waypoints {
-            var point = snapshot.point(for: waypoint.coordinate)
+            guard let coordinate = GPXWaypointAdapter.coordinate(from: waypoint) else { continue }
+            var point = snapshot.point(for: coordinate)
             point.x -= size.width / 2
             point.y -= size.height / 2
             pinImage.draw(at: point, from: NSRect(origin: .zero, size: image.size), operation: .sourceOver, fraction: 1)
