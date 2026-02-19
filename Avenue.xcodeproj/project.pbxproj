@@ -17,7 +17,7 @@
 		12359FE12587C27300365811 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12359FE02587C27300365811 /* Quartz.framework */; };
 		12359FE42587C27300365811 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12359FE32587C27300365811 /* PreviewViewController.swift */; };
 		12359FE72587C27300365811 /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 12359FE52587C27300365811 /* PreviewViewController.xib */; };
-		12359FEC2587C27300365811 /* GPXQuickLook.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 12359FDF2587C27300365811 /* GPXQuickLook.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		12359FEC2587C27300365811 /* GPXQuickLook.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 12359FDF2587C27300365811 /* GPXQuickLook.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1235A0142587C78600365811 /* CoreGPX in Frameworks */ = {isa = PBXBuildFile; productRef = 1235A0132587C78600365811 /* CoreGPX */; };
 		1235A0182587C7AF00365811 /* GPXWaypoint+MKAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9CFB0622F0787700658566 /* GPXWaypoint+MKAnnotation.swift */; };
 		1235A01C2587C7C100365811 /* GPXExtentCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5D102E2387F2C000F7D3C9 /* GPXExtentCoordinates.swift */; };
@@ -55,7 +55,7 @@
 		BF63F3802971B5DD00255014 /* QuickLookThumbnailing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF63F37F2971B5DC00255014 /* QuickLookThumbnailing.framework */; };
 		BF63F3812971B5DD00255014 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12359FE02587C27300365811 /* Quartz.framework */; };
 		BF63F3842971B5DD00255014 /* ThumbnailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF63F3832971B5DD00255014 /* ThumbnailProvider.swift */; };
-		BF63F3892971B5DD00255014 /* Avenue Thumbnails.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BF63F37E2971B5DC00255014 /* Avenue Thumbnails.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BF63F3892971B5DD00255014 /* Avenue Thumbnails.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BF63F37E2971B5DC00255014 /* Avenue Thumbnails.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BF63F38F2971B68A00255014 /* CoreGPX in Frameworks */ = {isa = PBXBuildFile; productRef = BF63F38E2971B68A00255014 /* CoreGPX */; };
 		BF63F3902971B69000255014 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 121E04C724C6F303008EAA29 /* MapKit.framework */; };
 		BF63F3912971B76000255014 /* MKSnapshotDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1292DD3D289D1F7B00D42E77 /* MKSnapshotDrawer.swift */; };
@@ -95,16 +95,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		12359FED2587C27300365811 /* Embed App Extensions */ = {
+		12359FED2587C27300365811 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BF63F3892971B5DD00255014 /* Avenue Thumbnails.appex in Embed App Extensions */,
-				12359FEC2587C27300365811 /* GPXQuickLook.appex in Embed App Extensions */,
+				BF63F3892971B5DD00255014 /* Avenue Thumbnails.appex in Embed Foundation Extensions */,
+				12359FEC2587C27300365811 /* GPXQuickLook.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -349,7 +349,7 @@
 				BF4F5AA722D1FBCD00C8E95A /* Sources */,
 				BF4F5AA922D1FBCD00C8E95A /* Resources */,
 				12C445292478FA3E00BE9465 /* Frameworks */,
-				12359FED2587C27300365811 /* Embed App Extensions */,
+				12359FED2587C27300365811 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -410,8 +410,9 @@
 		BF4F5AA322D1FBCD00C8E95A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 2620;
 				ORGANIZATIONNAME = Vincent;
 				TargetAttributes = {
 					12359FDE2587C27300365811 = {
@@ -612,6 +613,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 152;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = WWF99NGYL5;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -633,7 +635,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended.GPXQuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -658,6 +660,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 152;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = WWF99NGYL5;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -679,7 +682,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended.GPXQuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -729,9 +732,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -746,11 +751,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -791,9 +797,11 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -802,10 +810,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -814,7 +823,6 @@
 		BF4F5AC922D1FBCF00C8E95A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Avenue/Avenue.entitlements;
 				CODE_SIGN_IDENTITY = "-";
@@ -822,15 +830,20 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 152;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = WWF99NGYL5;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_RESOURCE_ACCESS_PRINTING = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				INFOPLIST_FILE = Avenue/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended;
 				PRODUCT_NAME = "Avenue Extended";
@@ -842,22 +855,26 @@
 		BF4F5ACA22D1FBCF00C8E95A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Avenue/Avenue.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 152;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = WWF99NGYL5;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_RESOURCE_ACCESS_PRINTING = YES;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				INFOPLIST_FILE = Avenue/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended;
 				PRODUCT_NAME = "Avenue Extended";
@@ -869,17 +886,17 @@
 		BF4F5ACC22D1FBCF00C8E95A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = AvenueTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = neo.vincent.AvenueTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -890,17 +907,17 @@
 		BF4F5ACD22D1FBCF00C8E95A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = AvenueTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = neo.vincent.AvenueTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -911,14 +928,19 @@
 		BF63F38A2971B5DD00255014 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AUTOMATION_APPLE_EVENTS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = "Avenue Thumbnails/Avenue_Thumbnails.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 152;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = WWF99NGYL5;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Avenue Thumbnails/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Avenue Thumbnails";
@@ -928,7 +950,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended.AvenueThumbnails;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -941,14 +963,19 @@
 		BF63F38B2971B5DD00255014 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				AUTOMATION_APPLE_EVENTS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = "Avenue Thumbnails/Avenue_Thumbnails.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 152;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = WWF99NGYL5;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Avenue Thumbnails/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Avenue Thumbnails";
@@ -958,7 +985,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.changjo.AvenueExtended.AvenueThumbnails;
 				PRODUCT_NAME = "$(TARGET_NAME)";

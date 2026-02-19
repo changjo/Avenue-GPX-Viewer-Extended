@@ -218,14 +218,21 @@ class ViewController: NSViewController, MKMapViewDelegate {
         //dropDownMenu.menu?.items.append()
 //        self.view.addSubview(dropDownMenu)
         
-        if #available(macOS 26, *) {
-            let glassView = NSGlassEffectView()
-            glassView.frame = NSRect(x: 0, y: 0, width: 145, height: 25)
-            glassView.contentView = dropDownMenu
+        if #available(macOS 26, *),
+           let glassViewClass = NSClassFromString("NSGlassEffectView") as? NSView.Type {
+            let glassView = glassViewClass.init(frame: NSRect(x: 0, y: 0, width: 145, height: 25))
+
+            if glassView.responds(to: Selector(("setContentView:"))) {
+                glassView.setValue(dropDownMenu, forKey: "contentView")
+            } else {
+                dropDownMenu.frame = glassView.bounds
+                dropDownMenu.autoresizingMask = [.width, .height]
+                glassView.addSubview(dropDownMenu)
+            }
+
             self.glassView = glassView
             self.view.addSubview(glassView)
-        }
-        else {
+        } else {
             dropDownMenu.wantsLayer = true
             dropDownMenu.layer?.opacity = 0.9
             self.view.addSubview(dropDownMenu)
