@@ -147,7 +147,7 @@ private extension MapView {
             extent.extendAreaToIncludeLocation(coordinate)
             if let annotation = GPXWaypointAnnotation(waypoint: waypoint) {
                 annotations.append(annotation)
-            }
+             }
         }
 
         for route in root.routes {
